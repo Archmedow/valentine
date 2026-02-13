@@ -87,3 +87,54 @@
 <body>
 
 <div class="container">
+    <h1>Happy Valentine's Day Dalli ❤️</h1>
+
+    <p>
+        From the day you came into my life,  
+        everything became softer, brighter and more beautiful. 🌻  
+        You are not just my girlfriend…  
+        you are my peace, my comfort, my forever.
+    </p>
+
+    <button onclick="startLove()">Tap Here My Love 💌</button>
+
+    <div id="loveMessage">
+        <p>
+            Dalli ❤️  
+            I don’t promise a perfect life,  
+            but I promise to hold your hand in every imperfect moment.  
+            I promise to choose you every single day.  
+            Today, tomorrow and always. 💍  
+            <br><br>
+            Forever yours,  
+            <br><b>Amu ❤️</b>
+        </p>
+    </div>
+</div>
+
+<audio id="bgMusic" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+
+<script>
+function startLove() {
+    document.getElementById("loveMessage").style.display = "block";
+    document.getElementById("bgMusic").play();
+}
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
