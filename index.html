@@ -1,147 +1,185 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dalli ❤️ My Valentine</title>
+<title>Dalli ❤️ My Forever</title>
 
 <style>
-body {
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(135deg, #ff4e8a, #8e44ad);
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-    color: white;
-    overflow-x: hidden;
+body{
+margin:0;
+font-family:sans-serif;
+text-align:center;
+color:white;
+overflow-x:hidden;
+background:linear-gradient(135deg,#ff4e8a,#8e44ad);
 }
 
-.container {
-    padding: 30px;
+.screen{
+padding:30px;
 }
 
-h1 {
-    font-size: 38px;
-    margin-top: 40px;
-    animation: glow 2s infinite alternate;
+input{
+padding:10px;
+border-radius:20px;
+border:none;
+margin-top:20px;
+text-align:center;
 }
 
-@keyframes glow {
-    from { text-shadow: 0 0 10px white; }
-    to { text-shadow: 0 0 25px #ffdde1; }
+button{
+padding:10px 20px;
+border:none;
+border-radius:20px;
+background:white;
+color:#ff4e8a;
+margin-top:15px;
+cursor:pointer;
 }
 
-.message {
-    font-size: 18px;
-    margin: 20px;
-    line-height: 1.6;
+img{
+width:250px;
+border-radius:20px;
+margin-top:20px;
+box-shadow:0 0 20px white;
 }
 
-img {
-    width: 250px;
-    border-radius: 20px;
-    margin-top: 20px;
-    box-shadow: 0 0 20px rgba(255,255,255,0.7);
+.hidden{
+display:none;
 }
 
-button {
-    padding: 12px 25px;
-    font-size: 18px;
-    border: none;
-    border-radius: 30px;
-    background: white;
-    color: #ff4e8a;
-    margin-top: 25px;
-    cursor: pointer;
-    transition: 0.3s;
+.heart{
+position:fixed;
+top:-10px;
+color:red;
+animation:fall 5s linear infinite;
 }
 
-button:hover {
-    background: #ffdde1;
-    transform: scale(1.1);
+@keyframes fall{
+0%{transform:translateY(0);}
+100%{transform:translateY(100vh);opacity:0;}
 }
 
-.heart {
-    position: fixed;
-    top: -10px;
-    color: red;
-    animation: fall 5s linear infinite;
+.firework{
+position:fixed;
+font-size:30px;
+animation:explode 1s ease-out forwards;
 }
 
-@keyframes fall {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(100vh); }
-}
-
-.firework {
-    font-size: 40px;
-    animation: pop 1s ease-out infinite alternate;
-}
-
-@keyframes pop {
-    from { transform: scale(1); }
-    to { transform: scale(1.3); }
-}
-
-iframe {
-    display: none;
+@keyframes explode{
+0%{transform:scale(0);}
+100%{transform:scale(3);opacity:0;}
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-    <h1>Dalli ❤️ Happy Valentine's Day</h1>
+<!-- PASSWORD SCREEN -->
+<div id="lockScreen" class="screen">
+<h2>🔐 Enter Our Secret Password</h2>
+<p>Only my Dalli knows this ❤️</p>
+<input type="password" id="password" placeholder="Enter password">
+<br>
+<button onclick="unlock()">Unlock My Heart 💖</button>
+<p id="error" style="color:yellow;"></p>
+</div>
 
-    <img src="dalli.jpg" alt="My Love">
+<!-- MAIN CONTENT -->
+<div id="mainContent" class="screen hidden">
 
-    <p class="message">
-        From the moment you came into my life, everything changed.  
-        Every smile of yours feels like my home.  
-        Every hug feels like peace.  
-        Even our fights make our love stronger.  
+<h1>Dalli ❤️ Happy Valentine's Day</h1>
 
-        Dalli… I don't just love you.  
-        I choose you.  
-        Today. Tomorrow. Forever.  
+<img src="dalli.jpg">
 
-        Will you be my forever Valentine? 💍❤️
-    </p>
+<p>
+From the moment you came into my life,<br>
+everything became brighter.<br><br>
+You are my peace, my happiness,<br>
+my forever person.<br><br>
+I choose you. Every single day. 💍
+</p>
 
-    <button onclick="playMusic()">Tap Here My Love 💖</button>
+<button onclick="celebrate()">Tap For Surprise 🎁</button>
 
-    <div id="proposal" style="display:none;">
-        <h2 class="firework">💍 You Are Mine Forever 💍</h2>
-        <p>I promise to love you, protect you, and stay with you no matter what. ❤️</p>
-    </div>
+<div id="proposal" class="hidden">
+<h2>💍 You Are My Forever 💍</h2>
+<p>
+No matter what happens in life,<br>
+I promise to love you endlessly.<br>
+You are mine and I am yours ❤️
+</p>
 
-    <iframe id="music"
-        src="https://www.youtube.com/embed/UZqN1QT0ZXs?autoplay=1&loop=1&playlist=UZqN1QT0ZXs">
-    </iframe>
+<br>
+
+<iframe style="border-radius:12px"
+src="https://open.spotify.com/embed/track/1Y3LN4zO1Edc2EluIoSPJN"
+width="300"
+height="80"
+frameborder="0"
+allow="encrypted-media">
+</iframe>
+
+<br><br>
+
+<button onclick="showSecret()">Final Hidden Message 💌</button>
+
+</div>
+
+<div id="secret" class="hidden">
+<h2>🌹 My Secret Promise 🌹</h2>
+<p>
+Dalli…<br><br>
+Even if the world stands against us,<br>
+I will stand beside you.<br><br>
+This is not just love.<br>
+This is my lifetime decision. ❤️
+</p>
+</div>
+
 </div>
 
 <script>
-function playMusic() {
-    document.getElementById("music").style.display = "block";
-    document.getElementById("proposal").style.display = "block";
+function unlock(){
+var pass=document.getElementById("password").value;
+if(pass==="dalli143"){
+document.getElementById("lockScreen").style.display="none";
+document.getElementById("mainContent").style.display="block";
+}else{
+document.getElementById("error").innerHTML="Wrong password 😢 Try again my love.";
+}
 }
 
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 20 + "px";
-    heart.style.animationDuration = Math.random() * 3 + 3 + "s";
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 5000);
+function celebrate(){
+document.getElementById("proposal").style.display="block";
+for(let i=0;i<20;i++){
+createFirework();
+}
 }
 
-setInterval(createHeart, 500);
+function showSecret(){
+document.getElementById("secret").style.display="block";
+}
+
+function createHeart(){
+const heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(Math.random()*3+3)+"s";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),5000);
+}
+setInterval(createHeart,400);
+
+function createFirework(){
+const fw=document.createElement("div");
+fw.className="firework";
+fw.innerHTML="🎆";
+fw.style.left=Math.random()*100+"vw";
+fw.style.top=Math.random()*100+"vh";
+document.body.appendChild(fw);
+setTimeout(()=>fw.remove(),1000);
+}
 </script>
 
 </body>
