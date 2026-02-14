@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Dalli ❤️</title>
+<title>For My Dalli 🌻❤️</title>
 
 <style>
 body{
@@ -11,12 +11,12 @@ font-family:Segoe UI, sans-serif;
 text-align:center;
 color:white;
 overflow-x:hidden;
-background:linear-gradient(-45deg,#ff512f,#f09819,#ff6a88,#ff5e62);
+background:linear-gradient(-45deg,#ff512f,#ff9966,#ff5e62,#ff6a88);
 background-size:400% 400%;
-animation:sunset 12s ease infinite;
+animation:bg 12s ease infinite;
 }
 
-@keyframes sunset{
+@keyframes bg{
 0%{background-position:0% 50%;}
 50%{background-position:100% 50%;}
 100%{background-position:0% 50%;}
@@ -24,6 +24,7 @@ animation:sunset 12s ease infinite;
 
 .container{
 margin-top:60px;
+padding:20px;
 }
 
 h1{
@@ -39,33 +40,40 @@ text-align:center;
 }
 
 button{
-padding:10px 25px;
+padding:12px 28px;
 border:none;
 border-radius:30px;
 background:gold;
 font-weight:bold;
 cursor:pointer;
-margin-top:15px;
+margin-top:20px;
 box-shadow:0 0 20px gold;
+transition:0.3s;
 }
 
-.hidden{display:none;}
+button:hover{
+transform:scale(1.1);
+}
+
+.hidden{
+display:none;
+}
 
 .typing{
-margin-top:20px;
 min-height:80px;
 font-size:18px;
-padding:0 20px;
+margin-top:20px;
 }
 
 .slideshow img{
 width:260px;
 border-radius:20px;
-margin-top:20px;
+margin-top:25px;
 box-shadow:0 0 25px pink;
 }
 
-.sunflower{
+/* Floating animation */
+.floating{
 position:fixed;
 top:-10px;
 font-size:24px;
@@ -77,42 +85,58 @@ animation:fall linear infinite;
 100%{transform:translateY(110vh);}
 }
 
-#fireworksCanvas{
+/* Full screen love note */
+#loveNote{
 position:fixed;
 top:0;
 left:0;
-pointer-events:none;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.85);
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:30px;
+box-sizing:border-box;
+opacity:0;
+visibility:hidden;
+transition:0.5s;
+}
+
+#loveNote.show{
+opacity:1;
+visibility:visible;
+}
+
+.noteContent{
+max-width:500px;
+animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+from{transform:scale(0.8); opacity:0;}
+to{transform:scale(1); opacity:1;}
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="fireworksCanvas"></canvas>
-
 <div id="lockScreen" class="container">
 <h1>Enter Our Secret Password 🔐</h1>
 <input type="password" id="passwordInput">
 <br>
-<button onclick="unlock()">Unlock ❤️</button>
+<button onclick="unlock()">Unlock My Heart ❤️</button>
 </div>
 
 <div id="mainContent" class="container hidden">
 
-<h1>Happy Valentine's Day My Love 🌻</h1>
+<h1>Happy Valentine's Day My Dalli 🌻</h1>
 
-<div class="typing" id="typingText"></div>
+<div id="typingText" class="typing"></div>
 
-<button onclick="showSurprise()">Tap For Surprise 💖</button>
-
-<br><br>
-
-<iframe style="border-radius:12px"
-src="https://open.spotify.com/embed/track/6K5KEDzZS9Bo6J38Rbjexp"
-width="300" height="80"
-frameborder="0"
-allow="encrypted-media">
-</iframe>
+<button onclick="openNote()">Tap For More 💖</button>
 
 <div class="slideshow">
 <img id="slide" src="memory1.jpg">
@@ -120,9 +144,28 @@ allow="encrypted-media">
 
 </div>
 
+<!-- Beautiful Full Screen Note -->
+<div id="loveNote">
+<div class="noteContent">
+<h2>My Forever Commitment 💍❤️</h2>
+<p>
+Dalli...  
+In every lifetime, every universe, I will still choose you.  
+I promise to stand with you in your good and your bad.  
+To protect your heart.  
+To fight for us.  
+To love you endlessly.  
+You are my peace, my sunshine, my forever 🌻  
+— Your Amu
+</p>
+<br>
+<button onclick="closeNote()">Close 💛</button>
+</div>
+</div>
+
 <script>
 
-// PASSWORD
+/* PASSWORD */
 var correctPassword="amudalli";
 
 function unlock(){
@@ -138,8 +181,8 @@ alert("Wrong password ❤️");
 }
 }
 
-// TYPING EFFECT
-var text="Dalli... You are my peace, my happiness, my forever. I will stand with you in your good and bad. I love you endlessly. – Your Amu ❤️";
+/* TYPING EFFECT */
+var text="Dalli... You are my happiness, my calm, my forever. No matter what happens, I am always yours. 🌻❤️";
 var i=0;
 function startTyping(){
 if(i<text.length){
@@ -149,8 +192,8 @@ setTimeout(startTyping,45);
 }
 }
 
-// SLIDESHOW
-var images=["memory1.jpg","memory2.jpg","memory3.jpg","memory4.jpg","memory5.jpg","memory6.jpg","memory7.jpg","memory8.jpg","memory9.jpg"];
+/* SLIDESHOW */
+var images=["memory1.jpg","memory2.jpg","memory3.jpg","memory4.jpg","memory5.jpg"];
 var index=0;
 
 function startSlideshow(){
@@ -160,11 +203,11 @@ document.getElementById("slide").src=images[index];
 },3000);
 }
 
-// SUNFLOWERS
+/* SUNFLOWER FLOAT */
 function createSunflowers(){
 for(let i=0;i<15;i++){
 let flower=document.createElement("div");
-flower.className="sunflower";
+flower.className="floating";
 flower.innerHTML="🌻";
 flower.style.left=Math.random()*100+"vw";
 flower.style.animationDuration=(5+Math.random()*5)+"s";
@@ -172,36 +215,29 @@ document.body.appendChild(flower);
 }
 }
 
-// FIREWORKS
-var canvas=document.getElementById("fireworksCanvas");
-var ctx=canvas.getContext("2d");
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-
-function showSurprise(){
-alert("You are my wife in every universe ❤️💍");
-
-for(let i=0;i<80;i++){
-setTimeout(createFirework, i*20);
-}
+/* OPEN BEAUTIFUL NOTE */
+function openNote(){
+document.getElementById("loveNote").classList.add("show");
+createHearts();
 }
 
-function createFirework(){
-var x=Math.random()*canvas.width;
-var y=Math.random()*canvas.height;
-var radius=2;
-
-var explosion=setInterval(function(){
-ctx.beginPath();
-ctx.arc(x,y,radius,0,Math.PI*2);
-ctx.fillStyle="white";
-ctx.fill();
-radius+=2;
-if(radius>30){
-clearInterval(explosion);
-ctx.clearRect(0,0,canvas.width,canvas.height);
+/* CLOSE NOTE */
+function closeNote(){
+document.getElementById("loveNote").classList.remove("show");
 }
-},30);
+
+/* HEART + SUNFLOWER RAIN */
+function createHearts(){
+for(let i=0;i<40;i++){
+let item=document.createElement("div");
+item.className="floating";
+item.innerHTML=Math.random()>0.5?"❤️":"🌻";
+item.style.left=Math.random()*100+"vw";
+item.style.animationDuration=(3+Math.random()*4)+"s";
+document.body.appendChild(item);
+
+setTimeout(()=>{item.remove();},7000);
+}
 }
 
 </script>
