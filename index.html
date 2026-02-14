@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dalli ❤️ My Forever</title>
+<title>Dalli 🌻 My Sunshine</title>
 
 <style>
 body{
@@ -10,8 +10,14 @@ margin:0;
 font-family:sans-serif;
 text-align:center;
 color:white;
-overflow-x:hidden;
-background:linear-gradient(135deg,#ff4e8a,#8e44ad);
+overflow:hidden;
+background:linear-gradient(135deg,#ffb347,#ff4e8a,#8e44ad);
+animation:fadeIn 2s ease-in;
+}
+
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
 }
 
 .screen{
@@ -29,29 +35,41 @@ text-align:center;
 button{
 padding:10px 20px;
 border:none;
-border-radius:20px;
+border-radius:25px;
 background:white;
 color:#ff4e8a;
 margin-top:15px;
 cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+background:#fff5f5;
 }
 
 img{
-width:250px;
+width:260px;
 border-radius:20px;
 margin-top:20px;
-box-shadow:0 0 20px white;
+box-shadow:0 0 25px gold;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{box-shadow:0 0 20px gold;}
+to{box-shadow:0 0 45px orange;}
 }
 
 .hidden{
 display:none;
 }
 
-.heart{
+.sunflower{
 position:fixed;
 top:-10px;
-color:red;
-animation:fall 5s linear infinite;
+font-size:25px;
+animation:fall 6s linear infinite;
 }
 
 @keyframes fall{
@@ -77,42 +95,45 @@ animation:explode 1s ease-out forwards;
 <!-- PASSWORD SCREEN -->
 <div id="lockScreen" class="screen">
 <h2>🔐 Enter Our Secret Password</h2>
-<p>Only my Dalli knows this ❤️</p>
+<p>Only my Sunshine knows 🌻</p>
 <input type="password" id="password" placeholder="Enter password">
 <br>
-<button onclick="unlock()">Unlock My Heart 💖</button>
+<button onclick="unlock()">Unlock My Heart 💛</button>
 <p id="error" style="color:yellow;"></p>
 </div>
 
 <!-- MAIN CONTENT -->
 <div id="mainContent" class="screen hidden">
 
-<h1>Dalli ❤️ Happy Valentine's Day</h1>
+<h1>Dalli 🌻 My Sunshine</h1>
 
 <img src="dalli.jpg">
 
 <p>
-From the moment you came into my life,<br>
-everything became brighter.<br><br>
-You are my peace, my happiness,<br>
-my forever person.<br><br>
-I choose you. Every single day. 💍
+You came into my life like sunlight 🌅<br><br>
+You are my happiness,<br>
+my peace,<br>
+my forever choice 💍<br><br>
+I choose you today,<br>
+tomorrow,<br>
+and every lifetime.
 </p>
 
 <button onclick="celebrate()">Tap For Surprise 🎁</button>
 
 <div id="proposal" class="hidden">
-<h2>💍 You Are My Forever 💍</h2>
+<h2>💍 You Are My Forever 🌻</h2>
 <p>
 No matter what happens in life,<br>
-I promise to love you endlessly.<br>
-You are mine and I am yours ❤️
+I promise to stand beside you.<br><br>
+This isn't temporary love.<br>
+This is my lifetime decision ❤️
 </p>
 
 <br>
 
 <iframe style="border-radius:12px"
-src="https://open.spotify.com/embed/track/1Y3LN4zO1Edc2EluIoSPJN"
+src="https://open.spotify.com/embed/track/6K5KEDzZS9Bo6J38Rbjexp"
 width="300"
 height="80"
 frameborder="0"
@@ -122,17 +143,16 @@ allow="encrypted-media">
 <br><br>
 
 <button onclick="showSecret()">Final Hidden Message 💌</button>
-
 </div>
 
 <div id="secret" class="hidden">
-<h2>🌹 My Secret Promise 🌹</h2>
+<h2>🌻 My Secret Promise 🌻</h2>
 <p>
 Dalli…<br><br>
-Even if the world stands against us,<br>
-I will stand beside you.<br><br>
-This is not just love.<br>
-This is my lifetime decision. ❤️
+You are not just my love.<br>
+You are my home.<br><br>
+And I will protect this love<br>
+with everything I have. 💛
 </p>
 </div>
 
@@ -145,13 +165,13 @@ if(pass==="dalli143"){
 document.getElementById("lockScreen").style.display="none";
 document.getElementById("mainContent").style.display="block";
 }else{
-document.getElementById("error").innerHTML="Wrong password 😢 Try again my love.";
+document.getElementById("error").innerHTML="Wrong password 😢 Try again Sunshine.";
 }
 }
 
 function celebrate(){
 document.getElementById("proposal").style.display="block";
-for(let i=0;i<20;i++){
+for(let i=0;i<30;i++){
 createFirework();
 }
 }
@@ -160,16 +180,16 @@ function showSecret(){
 document.getElementById("secret").style.display="block";
 }
 
-function createHeart(){
-const heart=document.createElement("div");
-heart.className="heart";
-heart.innerHTML="❤️";
-heart.style.left=Math.random()*100+"vw";
-heart.style.animationDuration=(Math.random()*3+3)+"s";
-document.body.appendChild(heart);
-setTimeout(()=>heart.remove(),5000);
+function createSunflower(){
+const flower=document.createElement("div");
+flower.className="sunflower";
+flower.innerHTML="🌻";
+flower.style.left=Math.random()*100+"vw";
+flower.style.animationDuration=(Math.random()*3+4)+"s";
+document.body.appendChild(flower);
+setTimeout(()=>flower.remove(),6000);
 }
-setInterval(createHeart,400);
+setInterval(createSunflower,500);
 
 function createFirework(){
 const fw=document.createElement("div");
