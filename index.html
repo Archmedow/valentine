@@ -1,91 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dalli 🌻 My Sunshine</title>
+<title>For My Dalli ❤️</title>
 
 <style>
 body{
 margin:0;
-font-family:sans-serif;
-text-align:center;
-color:white;
+font-family: 'Segoe UI', sans-serif;
 overflow:hidden;
-background:linear-gradient(135deg,#ffb347,#ff4e8a,#8e44ad);
-animation:fadeIn 2s ease-in;
-}
-
-@keyframes fadeIn{
-from{opacity:0;}
-to{opacity:1;}
-}
-
-.screen{
-padding:30px;
-}
-
-input{
-padding:10px;
-border-radius:20px;
-border:none;
-margin-top:20px;
+background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ffae00,#ff5e62);
+background-size:400% 400%;
+animation:sunset 12s ease infinite;
+color:white;
 text-align:center;
+}
+
+@keyframes sunset{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.container{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:90%;
+}
+
+h1{
+font-size:40px;
+text-shadow:0 0 20px gold;
 }
 
 button{
-padding:10px 20px;
+padding:15px 30px;
 border:none;
-border-radius:25px;
-background:white;
-color:#ff4e8a;
-margin-top:15px;
+border-radius:30px;
+background:gold;
+color:black;
+font-weight:bold;
+font-size:18px;
 cursor:pointer;
-transition:0.3s;
+box-shadow:0 0 20px gold;
 }
 
-button:hover{
-transform:scale(1.1);
-background:#fff5f5;
-}
-
-img{
-width:260px;
-border-radius:20px;
-margin-top:20px;
-box-shadow:0 0 25px gold;
-animation:glow 2s infinite alternate;
-}
-
-@keyframes glow{
-from{box-shadow:0 0 20px gold;}
-to{box-shadow:0 0 45px orange;}
-}
-
-.hidden{
-display:none;
-}
+.hidden{display:none;}
 
 .sunflower{
-position:fixed;
-top:-10px;
-font-size:25px;
-animation:fall 6s linear infinite;
-}
-
-@keyframes fall{
-0%{transform:translateY(0);}
-100%{transform:translateY(100vh);opacity:0;}
-}
-
-.firework{
-position:fixed;
+position:absolute;
 font-size:30px;
-animation:explode 1s ease-out forwards;
+animation:float 6s linear infinite;
 }
 
-@keyframes explode{
-0%{transform:scale(0);}
-100%{transform:scale(3);opacity:0;}
+@keyframes float{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-10vh);}
+}
+
+.slideshow img{
+width:250px;
+border-radius:20px;
+box-shadow:0 0 20px pink;
+margin-top:20px;
+}
+
+.typing{
+font-size:20px;
+margin-top:20px;
+min-height:60px;
 }
 </style>
 </head>
@@ -93,113 +79,111 @@ animation:explode 1s ease-out forwards;
 <body>
 
 <!-- PASSWORD SCREEN -->
-<div id="lockScreen" class="screen">
-<h2>🔐 Enter Our Secret Password</h2>
-<p>Only my Sunshine knows 🌻</p>
-<input type="password" id="password" placeholder="Enter password">
-<br>
-<button onclick="unlock()">Unlock My Heart 💛</button>
-<p id="error" style="color:yellow;"></p>
+<div class="container" id="passwordBox">
+<h1>Enter Our Secret Password 🔐</h1>
+<input type="password" id="pass" placeholder="Only Dalli knows ❤️" style="padding:10px;border-radius:10px;border:none;">
+<br><br>
+<button onclick="checkPassword()">Unlock My Heart</button>
 </div>
 
 <!-- MAIN CONTENT -->
-<div id="mainContent" class="screen hidden">
+<div class="container hidden" id="mainContent">
 
-<h1>Dalli 🌻 My Sunshine</h1>
+<h1>Happy Valentine’s Day Dalli ❤️🌻</h1>
 
-<img src="dalli.jpg">
-
-<p>
-You came into my life like sunlight 🌅<br><br>
-You are my happiness,<br>
-my peace,<br>
-my forever choice 💍<br><br>
-I choose you today,<br>
-tomorrow,<br>
-and every lifetime.
-</p>
-
-<button onclick="celebrate()">Tap For Surprise 🎁</button>
-
-<div id="proposal" class="hidden">
-<h2>💍 You Are My Forever 🌻</h2>
-<p>
-No matter what happens in life,<br>
-I promise to stand beside you.<br><br>
-This isn't temporary love.<br>
-This is my lifetime decision ❤️
-</p>
+<div class="typing" id="typingText"></div>
 
 <br>
-
-<iframe style="border-radius:12px"
-src="https://open.spotify.com/embed/track/6K5KEDzZS9Bo6J38Rbjexp"
-width="300"
-height="80"
-frameborder="0"
-allow="encrypted-media">
-</iframe>
+<button onclick="showSurprise()">Tap For Surprise 💖</button>
 
 <br><br>
 
-<button onclick="showSecret()">Final Hidden Message 💌</button>
-</div>
+<!-- Spotify Embed -->
+<iframe style="border-radius:12px" 
+src="https://open.spotify.com/embed/track/6K5KEDzZS9Bo6J38Rbjexp?utm_source=generator"
+width="300" height="80" frameBorder="0" 
+allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+</iframe>
 
-<div id="secret" class="hidden">
-<h2>🌻 My Secret Promise 🌻</h2>
-<p>
-Dalli…<br><br>
-You are not just my love.<br>
-You are my home.<br><br>
-And I will protect this love<br>
-with everything I have. 💛
-</p>
+<div class="slideshow">
+<img id="slide" src="memory1.jpg">
 </div>
 
 </div>
 
 <script>
-function unlock(){
-var pass=document.getElementById("password").value;
-if(pass==="dalli143"){
-document.getElementById("lockScreen").style.display="none";
-document.getElementById("mainContent").style.display="block";
-}else{
-document.getElementById("error").innerHTML="Wrong password 😢 Try again Sunshine.";
+
+// PASSWORD
+function checkPassword(){
+var password="amu❤️dalli";   // CHANGE THIS IF YOU WANT
+if(document.getElementById("pass").value===password){
+document.getElementById("passwordBox").classList.add("hidden");
+document.getElementById("mainContent").classList.remove("hidden");
+startTyping();
+startSlideshow();
+createSunflowers();
+}
+else{
+alert("Wrong password 💔 Try again Dalli");
 }
 }
 
-function celebrate(){
-document.getElementById("proposal").style.display="block";
-for(let i=0;i<30;i++){
-createFirework();
+// TYPING EFFECT
+var message="Dalli... From the first day till today, you are my peace, my happiness, my forever. I created this little world just for you. I love you more than words can ever explain. – Your Amu ❤️";
+var i=0;
+function startTyping(){
+if(i<message.length){
+document.getElementById("typingText").innerHTML+=message.charAt(i);
+i++;
+setTimeout(startTyping,50);
 }
 }
 
-function showSecret(){
-document.getElementById("secret").style.display="block";
+// SLIDESHOW
+var images=["memory1.jpg","memory2.jpg","memory3.jpg","memory4.jpg","memory5.jpg","memory6.jpg","memory7.jpg","memory8.jpg","memory9.jpg"];
+var index=0;
+function startSlideshow(){
+setInterval(function(){
+index=(index+1)%images.length;
+document.getElementById("slide").src=images[index];
+},3000);
 }
 
-function createSunflower(){
-const flower=document.createElement("div");
-flower.className="sunflower";
+// SUNFLOWERS
+function createSunflowers(){
+for(let i=0;i<15;i++){
+let flower=document.createElement("div");
 flower.innerHTML="🌻";
+flower.className="sunflower";
 flower.style.left=Math.random()*100+"vw";
-flower.style.animationDuration=(Math.random()*3+4)+"s";
+flower.style.animationDuration=(4+Math.random()*4)+"s";
 document.body.appendChild(flower);
-setTimeout(()=>flower.remove(),6000);
 }
-setInterval(createSunflower,500);
+}
 
-function createFirework(){
-const fw=document.createElement("div");
-fw.className="firework";
-fw.innerHTML="🎆";
-fw.style.left=Math.random()*100+"vw";
-fw.style.top=Math.random()*100+"vh";
-document.body.appendChild(fw);
-setTimeout(()=>fw.remove(),1000);
+// SURPRISE
+function showSurprise(){
+alert("Dalli ❤️ You are my forever. My wife. My everything. – Amu 💍");
+fireworks();
 }
+
+// FIREWORKS
+function fireworks(){
+for(let i=0;i<30;i++){
+let spark=document.createElement("div");
+spark.style.position="absolute";
+spark.style.width="6px";
+spark.style.height="6px";
+spark.style.background="white";
+spark.style.borderRadius="50%";
+spark.style.left=Math.random()*100+"vw";
+spark.style.top=Math.random()*100+"vh";
+spark.style.boxShadow="0 0 20px white";
+document.body.appendChild(spark);
+setTimeout(()=>spark.remove(),1000);
+}
+}
+
 </script>
 
 </body>
