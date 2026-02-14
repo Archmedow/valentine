@@ -8,30 +8,25 @@
 body{
 margin:0;
 font-family:Segoe UI, sans-serif;
-overflow:hidden;
 text-align:center;
 color:white;
-background:linear-gradient(to top,#ff512f,#f09819,#ff9966,#ff5e62);
+overflow-x:hidden;
+background:linear-gradient(-45deg,#ff512f,#f09819,#ff6a88,#ff5e62);
 background-size:400% 400%;
 animation:sunset 12s ease infinite;
 }
 
 @keyframes sunset{
-0%{background-position:0% 100%;}
-50%{background-position:100% 0%;}
-100%{background-position:0% 100%;}
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
 }
 
 .container{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-width:90%;
+margin-top:60px;
 }
 
 h1{
-font-size:32px;
 text-shadow:0 0 20px gold;
 }
 
@@ -58,21 +53,22 @@ box-shadow:0 0 20px gold;
 
 .typing{
 margin-top:20px;
-min-height:60px;
+min-height:80px;
 font-size:18px;
+padding:0 20px;
 }
 
 .slideshow img{
-width:250px;
+width:260px;
 border-radius:20px;
 margin-top:20px;
-box-shadow:0 0 20px pink;
+box-shadow:0 0 25px pink;
 }
 
 .sunflower{
 position:fixed;
 top:-10px;
-font-size:25px;
+font-size:24px;
 animation:fall linear infinite;
 }
 
@@ -81,7 +77,7 @@ animation:fall linear infinite;
 100%{transform:translateY(110vh);}
 }
 
-canvas{
+#fireworksCanvas{
 position:fixed;
 top:0;
 left:0;
@@ -92,22 +88,20 @@ pointer-events:none;
 
 <body>
 
-<canvas id="fireworks"></canvas>
+<canvas id="fireworksCanvas"></canvas>
 
-<div class="container" id="lockScreen">
+<div id="lockScreen" class="container">
 <h1>Enter Our Secret Password 🔐</h1>
 <input type="password" id="passwordInput">
 <br>
 <button onclick="unlock()">Unlock ❤️</button>
 </div>
 
-<div class="container hidden" id="mainContent">
+<div id="mainContent" class="container hidden">
 
 <h1>Happy Valentine's Day My Love 🌻</h1>
 
 <div class="typing" id="typingText"></div>
-
-<br>
 
 <button onclick="showSurprise()">Tap For Surprise 💖</button>
 
@@ -115,7 +109,8 @@ pointer-events:none;
 
 <iframe style="border-radius:12px"
 src="https://open.spotify.com/embed/track/6K5KEDzZS9Bo6J38Rbjexp"
-width="300" height="80" frameborder="0"
+width="300" height="80"
+frameborder="0"
 allow="encrypted-media">
 </iframe>
 
@@ -127,6 +122,7 @@ allow="encrypted-media">
 
 <script>
 
+// PASSWORD
 var correctPassword="amudalli";
 
 function unlock(){
@@ -142,16 +138,18 @@ alert("Wrong password ❤️");
 }
 }
 
-var text="Dalli... You are my forever, my peace, my happiness. No matter what happens, I am always with you. – Your Amu ❤️";
+// TYPING EFFECT
+var text="Dalli... You are my peace, my happiness, my forever. I will stand with you in your good and bad. I love you endlessly. – Your Amu ❤️";
 var i=0;
 function startTyping(){
 if(i<text.length){
 document.getElementById("typingText").innerHTML+=text.charAt(i);
 i++;
-setTimeout(startTyping,50);
+setTimeout(startTyping,45);
 }
 }
 
+// SLIDESHOW
 var images=["memory1.jpg","memory2.jpg","memory3.jpg","memory4.jpg","memory5.jpg","memory6.jpg","memory7.jpg","memory8.jpg","memory9.jpg"];
 var index=0;
 
@@ -162,37 +160,48 @@ document.getElementById("slide").src=images[index];
 },3000);
 }
 
+// SUNFLOWERS
 function createSunflowers(){
-for(let i=0;i<20;i++){
+for(let i=0;i<15;i++){
 let flower=document.createElement("div");
 flower.className="sunflower";
 flower.innerHTML="🌻";
 flower.style.left=Math.random()*100+"vw";
-flower.style.animationDuration=(4+Math.random()*5)+"s";
+flower.style.animationDuration=(5+Math.random()*5)+"s";
 document.body.appendChild(flower);
 }
 }
 
-function showSurprise(){
-alert("You are my wife in every universe ❤️💍");
-launchFireworks();
-}
-
-var canvas=document.getElementById("fireworks");
+// FIREWORKS
+var canvas=document.getElementById("fireworksCanvas");
 var ctx=canvas.getContext("2d");
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
 
-function launchFireworks(){
-for(let i=0;i<30;i++){
-let x=Math.random()*canvas.width;
-let y=Math.random()*canvas.height;
+function showSurprise(){
+alert("You are my wife in every universe ❤️💍");
+
+for(let i=0;i<80;i++){
+setTimeout(createFirework, i*20);
+}
+}
+
+function createFirework(){
+var x=Math.random()*canvas.width;
+var y=Math.random()*canvas.height;
+var radius=2;
+
+var explosion=setInterval(function(){
 ctx.beginPath();
-ctx.arc(x,y,4,0,2*Math.PI);
+ctx.arc(x,y,radius,0,Math.PI*2);
 ctx.fillStyle="white";
 ctx.fill();
+radius+=2;
+if(radius>30){
+clearInterval(explosion);
+ctx.clearRect(0,0,canvas.width,canvas.height);
 }
-setTimeout(()=>ctx.clearRect(0,0,canvas.width,canvas.height),1000);
+},30);
 }
 
 </script>
