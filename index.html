@@ -72,12 +72,12 @@ margin-top:25px;
 box-shadow:0 0 25px pink;
 }
 
-/* Floating animation */
 .floating{
 position:fixed;
 top:-10px;
 font-size:24px;
 animation:fall linear infinite;
+pointer-events:none;
 }
 
 @keyframes fall{
@@ -92,7 +92,7 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.85);
+background:rgba(0,0,0,0.9);
 display:flex;
 justify-content:center;
 align-items:center;
@@ -102,6 +102,7 @@ box-sizing:border-box;
 opacity:0;
 visibility:hidden;
 transition:0.5s;
+z-index:10;
 }
 
 #loveNote.show{
@@ -136,6 +137,19 @@ to{transform:scale(1); opacity:1;}
 
 <div id="typingText" class="typing"></div>
 
+<br>
+
+<!-- Spotify Song -->
+<iframe style="border-radius:12px"
+src="https://open.spotify.com/embed/track/6K5KEDzZS9Bo6J38Rbjexp"
+width="300"
+height="80"
+frameborder="0"
+allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+</iframe>
+
+<br>
+
 <button onclick="openNote()">Tap For More 💖</button>
 
 <div class="slideshow">
@@ -144,18 +158,18 @@ to{transform:scale(1); opacity:1;}
 
 </div>
 
-<!-- Beautiful Full Screen Note -->
+<!-- Romantic Full Screen Note -->
 <div id="loveNote">
 <div class="noteContent">
 <h2>My Forever Commitment 💍❤️</h2>
 <p>
-Dalli...  
-In every lifetime, every universe, I will still choose you.  
-I promise to stand with you in your good and your bad.  
-To protect your heart.  
-To fight for us.  
-To love you endlessly.  
-You are my peace, my sunshine, my forever 🌻  
+Dalli…<br><br>
+In every lifetime, every universe, I will always choose you.<br>
+I promise to stand with you in your good and your bad.<br>
+To protect your heart.<br>
+To never give up on us.<br>
+To love you endlessly.<br><br>
+You are my peace, my sunshine, my forever 🌻<br><br>
 — Your Amu
 </p>
 <br>
@@ -165,7 +179,6 @@ You are my peace, my sunshine, my forever 🌻
 
 <script>
 
-/* PASSWORD */
 var correctPassword="amudalli";
 
 function unlock(){
@@ -181,7 +194,6 @@ alert("Wrong password ❤️");
 }
 }
 
-/* TYPING EFFECT */
 var text="Dalli... You are my happiness, my calm, my forever. No matter what happens, I am always yours. 🌻❤️";
 var i=0;
 function startTyping(){
@@ -192,7 +204,6 @@ setTimeout(startTyping,45);
 }
 }
 
-/* SLIDESHOW */
 var images=["memory1.jpg","memory2.jpg","memory3.jpg","memory4.jpg","memory5.jpg"];
 var index=0;
 
@@ -203,7 +214,6 @@ document.getElementById("slide").src=images[index];
 },3000);
 }
 
-/* SUNFLOWER FLOAT */
 function createSunflowers(){
 for(let i=0;i<15;i++){
 let flower=document.createElement("div");
@@ -215,18 +225,15 @@ document.body.appendChild(flower);
 }
 }
 
-/* OPEN BEAUTIFUL NOTE */
 function openNote(){
 document.getElementById("loveNote").classList.add("show");
 createHearts();
 }
 
-/* CLOSE NOTE */
 function closeNote(){
 document.getElementById("loveNote").classList.remove("show");
 }
 
-/* HEART + SUNFLOWER RAIN */
 function createHearts(){
 for(let i=0;i<40;i++){
 let item=document.createElement("div");
@@ -235,7 +242,6 @@ item.innerHTML=Math.random()>0.5?"❤️":"🌻";
 item.style.left=Math.random()*100+"vw";
 item.style.animationDuration=(3+Math.random()*4)+"s";
 document.body.appendChild(item);
-
 setTimeout(()=>{item.remove();},7000);
 }
 }
