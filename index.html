@@ -2,24 +2,24 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dalli ❤️ My Sunshine</title>
+<title>For My Dalli ❤️</title>
 
 <style>
 body{
 margin:0;
-font-family:'Segoe UI',sans-serif;
+font-family:Segoe UI, sans-serif;
 overflow:hidden;
 text-align:center;
 color:white;
-background:linear-gradient(-45deg,#ff4e50,#ff6a88,#ff9966,#ff5e62);
+background:linear-gradient(to top,#ff512f,#f09819,#ff9966,#ff5e62);
 background-size:400% 400%;
-animation:bg 12s ease infinite;
+animation:sunset 12s ease infinite;
 }
 
-@keyframes bg{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
+@keyframes sunset{
+0%{background-position:0% 100%;}
+50%{background-position:100% 0%;}
+100%{background-position:0% 100%;}
 }
 
 .container{
@@ -31,12 +31,12 @@ width:90%;
 }
 
 h1{
-font-size:36px;
-text-shadow:0 0 25px gold;
+font-size:32px;
+text-shadow:0 0 20px gold;
 }
 
 input{
-padding:12px;
+padding:10px;
 border-radius:20px;
 border:none;
 width:220px;
@@ -44,14 +44,14 @@ text-align:center;
 }
 
 button{
-padding:12px 25px;
+padding:10px 25px;
 border:none;
 border-radius:30px;
 background:gold;
 font-weight:bold;
 cursor:pointer;
-box-shadow:0 0 20px gold;
 margin-top:15px;
+box-shadow:0 0 20px gold;
 }
 
 .hidden{display:none;}
@@ -66,7 +66,7 @@ font-size:18px;
 width:250px;
 border-radius:20px;
 margin-top:20px;
-box-shadow:0 0 25px pink;
+box-shadow:0 0 20px pink;
 }
 
 .sunflower{
@@ -81,42 +81,42 @@ animation:fall linear infinite;
 100%{transform:translateY(110vh);}
 }
 
-.firework{
-position:absolute;
-width:6px;
-height:6px;
-border-radius:50%;
-background:white;
-box-shadow:0 0 15px white;
+canvas{
+position:fixed;
+top:0;
+left:0;
+pointer-events:none;
 }
 </style>
 </head>
 
 <body>
 
+<canvas id="fireworks"></canvas>
+
 <div class="container" id="lockScreen">
 <h1>Enter Our Secret Password 🔐</h1>
-<input type="password" id="passwordInput" placeholder="Only you know ❤️">
+<input type="password" id="passwordInput">
 <br>
-<button onclick="unlock()">Unlock My Heart</button>
+<button onclick="unlock()">Unlock ❤️</button>
 </div>
 
 <div class="container hidden" id="mainContent">
 
-<h1>Happy Valentine's Day My Dalli ❤️🌻</h1>
+<h1>Happy Valentine's Day My Love 🌻</h1>
 
 <div class="typing" id="typingText"></div>
 
 <br>
 
-<button onclick="surprise()">Tap For Special Surprise 💖</button>
+<button onclick="showSurprise()">Tap For Surprise 💖</button>
 
 <br><br>
 
 <iframe style="border-radius:12px"
 src="https://open.spotify.com/embed/track/6K5KEDzZS9Bo6J38Rbjexp"
 width="300" height="80" frameborder="0"
-allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+allow="encrypted-media">
 </iframe>
 
 <div class="slideshow">
@@ -127,7 +127,6 @@ allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-pictur
 
 <script>
 
-// SIMPLE PASSWORD (CHANGE IF YOU WANT)
 var correctPassword="amudalli";
 
 function unlock(){
@@ -139,12 +138,11 @@ startTyping();
 startSlideshow();
 createSunflowers();
 }else{
-alert("Wrong password ❤️ Try again");
+alert("Wrong password ❤️");
 }
 }
 
-// TYPING EFFECT
-var text="Dalli... You are my peace, my happiness, my forever. No matter what happens, I am always yours. Today, tomorrow and always. – Your Amu ❤️";
+var text="Dalli... You are my forever, my peace, my happiness. No matter what happens, I am always with you. – Your Amu ❤️";
 var i=0;
 function startTyping(){
 if(i<text.length){
@@ -154,9 +152,9 @@ setTimeout(startTyping,50);
 }
 }
 
-// SLIDESHOW
 var images=["memory1.jpg","memory2.jpg","memory3.jpg","memory4.jpg","memory5.jpg","memory6.jpg","memory7.jpg","memory8.jpg","memory9.jpg"];
 var index=0;
+
 function startSlideshow(){
 setInterval(function(){
 index=(index+1)%images.length;
@@ -164,29 +162,37 @@ document.getElementById("slide").src=images[index];
 },3000);
 }
 
-// SUNFLOWERS
 function createSunflowers(){
-for(let i=0;i<15;i++){
+for(let i=0;i<20;i++){
 let flower=document.createElement("div");
 flower.className="sunflower";
 flower.innerHTML="🌻";
 flower.style.left=Math.random()*100+"vw";
-flower.style.animationDuration=(4+Math.random()*4)+"s";
+flower.style.animationDuration=(4+Math.random()*5)+"s";
 document.body.appendChild(flower);
 }
 }
 
-// SURPRISE + FIREWORKS
-function surprise(){
+function showSurprise(){
 alert("You are my wife in every universe ❤️💍");
-for(let i=0;i<40;i++){
-let fw=document.createElement("div");
-fw.className="firework";
-fw.style.left=Math.random()*100+"vw";
-fw.style.top=Math.random()*100+"vh";
-document.body.appendChild(fw);
-setTimeout(()=>fw.remove(),1000);
+launchFireworks();
 }
+
+var canvas=document.getElementById("fireworks");
+var ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+function launchFireworks(){
+for(let i=0;i<30;i++){
+let x=Math.random()*canvas.width;
+let y=Math.random()*canvas.height;
+ctx.beginPath();
+ctx.arc(x,y,4,0,2*Math.PI);
+ctx.fillStyle="white";
+ctx.fill();
+}
+setTimeout(()=>ctx.clearRect(0,0,canvas.width,canvas.height),1000);
 }
 
 </script>
